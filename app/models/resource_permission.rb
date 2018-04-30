@@ -1,0 +1,2 @@
+class ResourcePermission < Permission
+end
