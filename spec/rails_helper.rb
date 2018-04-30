@@ -7,8 +7,6 @@ require 'rspec/rails'
 # ActiveRecord::Migration.maintain_test_schema!
 # ActiveJob::Base.queue_adapter = :test
 RSpec.configure do |config|
-  # config.extend ControllerMacros, type: :controller
-  config.extend AuthHelper, type: :controller
   %i[controller view request].each do |type|
     config.include ::Rails::Controller::Testing::TestProcess, type: type
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type

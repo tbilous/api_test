@@ -6,15 +6,15 @@ Rails.application.routes.draw do
       post 'grant_role'
     end
   end
-
-  namespace :api, defaults: { format: :json } do
+  scope module: 'api', defaults: { format: :json } do
     namespace :v1 do
-      resources :users, concerns: [:permitable], only: %w(create) do
-        get :show, on: :collection
-      end
+      resources :users, concerns: [:permitable], only: %w(create show index)
+      get '/search', to: 'users#search'
       resources :permissions, only: %w(index)
-      resources :roles, only: %w(index)
-      get '/me', to: 'users#me'
+      resources :roles, only: %w(create index)
+      resources :write_resource_permissions, only: %w(create)
+      resources :read_resource_permissions, only: %w(create)
+      resources :action_permissions, only: %w(create)
     end
   end
 end
