@@ -8,7 +8,7 @@ RSpec.describe RolePermission, type: :model do
   describe 'validate uniq pair' do
     it do
       role_permission
-      should validate_uniqueness_of(:role_id).scoped_to(:permission_id)
+      should validate_uniqueness_of(:permission_id).scoped_to(:role_id)
     end
   end
 end

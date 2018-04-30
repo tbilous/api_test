@@ -172,7 +172,7 @@ RSpec.describe Api::V1::UsersController do
       }
     end
 
-    subject { post :grant_role, params: params }
+    subject { post :remove_role, params: params }
 
     it { expect { subject }.to change(UserRole, :count) }
 

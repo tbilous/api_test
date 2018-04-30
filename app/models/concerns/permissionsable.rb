@@ -41,7 +41,7 @@ module Permissionsable
 
     def add_roles(r)
       error = false
-      if permissions.include?(r)
+      if roles.include?(r)
         error = 'forbidden!'
       else
         roles << r

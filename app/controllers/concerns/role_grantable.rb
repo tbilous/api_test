@@ -14,7 +14,7 @@ module RoleGrantable
 
   def remove_role
     @resource = model_klass.find(params[:id])
-    success, error = @resource.remove_role(@role)
+    success, error = @resource.remove_roles(@role)
     send_response(@resource, success, error)
   end
 
