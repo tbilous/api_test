@@ -122,4 +122,49 @@ RSpec.describe Api::V1::UsersController do
       expect(response.status).to eq 200
     end
   end
+
+  describe 'POST #grant_role' do
+    let(:user) { create(:user) }
+    let(:role) { create(:role) }
+
+    let(:params) do
+      {
+        id: user.id,
+        role_id: role.id,
+        format: :json
+      }
+    end
+
+    subject { post :grant_role, params: params }
+
+    it { expect { subject }.to change(UserRole, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'DELETE #remove_role' do
+    let(:user) { create(:user) }
+    let(:role) { create(:role) }
+    let!(:user_role) { create(:user_role, user: user, role: role) }
+
+    let(:params) do
+      {
+        id: user.id,
+        role_id: role.id,
+        format: :json
+      }
+    end
+
+    subject { post :grant_role, params: params }
+
+    it { expect { subject }.to change(UserRole, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
 end
