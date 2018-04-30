@@ -15,4 +15,18 @@ RSpec.describe Api::V1::PermissionsController, type: :controller do
       expect(response.body).to have_json_size(2)
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:permission) { create(:permission) }
+    let(:params) do
+      {
+        id: permission.id,
+        format: :json
+      }
+    end
+
+    subject { post :destroy, params: params }
+
+    it { expect { subject }.to change(Permission, :count) }
+  end
 end

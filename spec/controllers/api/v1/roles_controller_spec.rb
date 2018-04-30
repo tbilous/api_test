@@ -82,4 +82,18 @@ RSpec.describe Api::V1::RolesController, type: :controller do
       expect(response.status).to eq 200
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:role) { create(:role) }
+    let(:params) do
+      {
+        id: role.id,
+        format: :json
+      }
+    end
+
+    subject { post :destroy, params: params }
+
+    it { expect { subject }.to change(Role, :count) }
+  end
 end

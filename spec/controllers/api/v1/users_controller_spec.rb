@@ -78,6 +78,20 @@ RSpec.describe Api::V1::UsersController do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let!(:user) { create(:user) }
+    let(:params) do
+      {
+        id: user.id,
+        format: :json
+      }
+    end
+
+    subject { post :destroy, params: params }
+
+    it { expect { subject }.to change(User, :count) }
+  end
+
   describe 'POST #grant_permission' do
     let(:user) { create(:user) }
     let(:permission) { create(:permission) }

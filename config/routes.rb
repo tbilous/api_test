@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   scope module: 'api', defaults: { format: :json } do
     namespace :v1 do
-      resources :users, concerns: %i(role_grantable permit_grantable), only: %w(create show index)
+      resources :users, concerns: %i(role_grantable permit_grantable), only: %w(create show index destroy)
       get '/search', to: 'users#search'
       resources :permissions, only: %w(index destroy)
       resources :roles, concerns: [:permit_grantable], only: %w(create index destroy)

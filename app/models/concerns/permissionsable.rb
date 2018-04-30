@@ -12,7 +12,7 @@ module Permissionsable
 
     def role_permissions?
       user_role_permissions.map { |p| { type: p.display_type, slug: p.slug } }.uniq
-      # .select { |hash| hash[:type] == 'action' }
+      # you can add .select { |hash| hash[:type] == 'action' }
     end
 
     def permission_granted?(p)
