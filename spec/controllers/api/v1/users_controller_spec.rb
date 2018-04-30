@@ -77,4 +77,49 @@ RSpec.describe Api::V1::UsersController do
       end
     end
   end
+
+  describe 'POST #grant_permission' do
+    let(:user) { create(:user) }
+    let(:permission) { create(:permission) }
+
+    let(:params) do
+      {
+        id: user.id,
+        permission_id: permission.id,
+        format: :json
+      }
+    end
+
+    subject { post :grant_permission, params: params }
+
+    it { expect { subject }.to change(UserPermission, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'POST #remove_permission' do
+    let(:user) { create(:user) }
+    let(:permission) { create(:permission) }
+    let!(:user_permission) { create(:user_permission, user: user, permission: permission) }
+
+    let(:params) do
+      {
+        id: user.id,
+        permission_id: permission.id,
+        format: :json
+      }
+    end
+
+    subject { delete :remove_permission, params: params }
+
+    it { expect { subject }.to change(UserPermission, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
 end

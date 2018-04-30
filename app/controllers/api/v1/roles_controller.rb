@@ -1,4 +1,6 @@
 class Api::V1::RolesController < ApplicationController
+  include PermitGrantable
+
   def create
     respond_with @role = Role.create(strong_params), location: url_for(%i(v1 roles))
   end

@@ -37,4 +37,49 @@ RSpec.describe Api::V1::RolesController, type: :controller do
       expect(response.body).to have_json_size(2)
     end
   end
+
+  describe 'POST #grant_permission' do
+    let(:role) { create(:role) }
+    let(:permission) { create(:permission) }
+
+    let(:params) do
+      {
+        id: role.id,
+        permission_id: permission.id,
+        format: :json
+      }
+    end
+
+    subject { post :grant_permission, params: params }
+
+    it { expect { subject }.to change(RolePermission, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'POST #remove_permission' do
+    let(:role) { create(:role) }
+    let(:permission) { create(:permission) }
+    let!(:role_permission) { create(:role_permission, role: role, permission: permission) }
+
+    let(:params) do
+      {
+        id: role.id,
+        permission_id: permission.id,
+        format: :json
+      }
+    end
+
+    subject { delete :remove_permission, params: params }
+
+    it { expect { subject }.to change(RolePermission, :count) }
+
+    it do
+      subject
+      expect(response.status).to eq 200
+    end
+  end
 end

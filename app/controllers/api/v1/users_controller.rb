@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  include PermitGrantable
+
   def create
     respond_with @user = User.create(strong_params), location: url_for(%i(v1 users))
   end

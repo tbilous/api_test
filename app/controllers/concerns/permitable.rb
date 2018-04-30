@@ -23,4 +23,8 @@ module Permitable
       render json: { error: error }.to_json, status: :unprocessable_entity
     end
   end
+
+  def set_object
+    @resource = model_klass.find(params[:id])
+  end
 end
