@@ -10,4 +10,10 @@ class User < ApplicationRecord
 
   validates_presence_of :email, :name
   validates :email, format: /\A[^@\s]+@[^@\s]+\z/, uniqueness: true
+
+  before_save :downcase_fields
+
+  def downcase_fields
+    email.downcase!
+  end
 end

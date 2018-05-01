@@ -3,19 +3,19 @@ user = User.create!([
 ])
 ActionPermission.create!([
   {type: "ActionPermission", slug: "REBOOT"},
-  {type: "ActionPermission", slug: "drink beer"}
+  {type: "ActionPermission", slug: "power off"}
 ])
 ReadResourcePermission.create!([
-  {type: "ReadResourcePermission", slug: "watch porn"}
+  {type: "ReadResourcePermission", slug: "watch resource"}
 ])
 WriteResourcePermission.create!([
-  {type: "WriteResourcePermission", slug: "act in porn"},
+  {type: "WriteResourcePermission", slug: "write attr"},
   {type: "WriteResourcePermission", slug: "write file"},
   {type: "WriteResourcePermission", slug: "write files"}
 ])
 Role.create!([
  {name: "ABUSER"},
- {name: "drunkard"}
+ {name: "moderator"}
 ])
 UserRole.create!([
  {user_id: user.sample.id, role_id: 1},

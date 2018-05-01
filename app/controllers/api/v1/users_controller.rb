@@ -17,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def search
-    respond_with @user = User.find_by_email(params[:user_email])
+    respond_with @user = User.find_by_email(params[:user_email].downcase)
   end
 
   def destroy
